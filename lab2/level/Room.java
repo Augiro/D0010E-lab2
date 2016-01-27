@@ -5,21 +5,27 @@ import java.awt.Color;
 
 
 public class Room { 
-	
+	Room northRoom, westRoom, southRoom, eastRoom;	// Not private because the assignment says so
+	Color floorColor;
+	int height, length;
+
+
 	public Room(int dx, int dy, Color color) {
-		
+		length = dx;
+		height = dy;
+		floorColor = color;
 	}
 
 	public void connectNorthTo(Room r) {
-		
+		northRoom = r;
 	}
 	public void connectEastTo(Room r) {
-		
+		eastRoom = r;
 	}
 	public void connectSouthTo(Room r) {
-		
+		southRoom = r;
 	}
 	public void connectWestTo(Room r) {
-		
+		westRoom = r;
 	}
 }
