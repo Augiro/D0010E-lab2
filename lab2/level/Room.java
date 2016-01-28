@@ -8,6 +8,7 @@ public class Room {
 	Room northRoom, westRoom, southRoom, eastRoom;	// Not private because the assignment says so
 	Color floorColor;
 	int height, length;
+	int x, y;
 
 
 	public Room(int dx, int dy, Color color) {

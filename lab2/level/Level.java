@@ -1,52 +1,57 @@
 
 package lab2.level;
 
-import java.util.ArrayList;
 import java.util.Observable;
 
 
 public class Level extends Observable {
-	private ArrayList rooms = new ArrayList();
+	private Rooms rooms = new Rooms();
 	private Room startLocation;
+	private Room currentLocation;
 
 	public boolean place(Room r, int x, int y)  {
-		if(overlaps(r, x, y)) return false;
-		rooms.add(new RoomLocation(r, x, y));
+		if(overlaps(x, y) || x < 0 || y < 0) return false;
+		Rooms roomNode = rooms;
+		while(roomNode.nextRooms != null) {
+			roomNode = roomNode.nextRooms;
+		}
+		rooms.nextRooms = new Rooms(r);
+		return true;
 	}
 	
 	public void firstLocation(Room r) {
-			startLocation = r;,
+			startLocation = r;
 	}
 
-	private boolean overlaps(Room r, int x, int y) {
-		return false; // WIP
-		if (rooms.size() == 0) return false;
-		for(int i=0; i < rooms.size(); i++) {
-			if(y + r.height )
+	private boolean overlaps(int x, int y) {
+		Rooms tempRooms = rooms;
+		boolean xoverlap;
+		boolean yoverlap;
+		while(tempRooms.nextRooms != null) {
+			xoverlap = yoverlap = false;
+			if(x < tempRooms.room.x && x < (tempRooms.room.x + tempRooms.room.length-1))
+				xoverlap = true;
+			if(xoverlap && (y < tempRooms.room.y && y < (tempRooms.room.y + tempRooms.room.length-1)))
+				yoverlap = true;
+			if(xoverlap && yoverlap) return true;
+			tempRooms = tempRooms.nextRooms;
 		}
-	}
-}
-
-class RoomLocation {
-	private Room room;
-	private int xcord;
-	private int ycord;
-
-	RoomLocation(Room room, int x, int y) {
-		this.room = room;
-		xcord = x;
-		ycord = y;
+		return false;
 	}
 
-	public Room room() {
-		return room;
+	private class Rooms {
+		Rooms() {}
+		Rooms(Room room) {
+			this.room = room;
+		}
+		Room room;
+		Rooms nextRooms = null;
 	}
 
-	public int xcord() {
-		return xcord;
-	}
-
-	public int ycord() {
-		return ycord;
-	}
+	// May or may not be necessary, depending on whether specific coordinates are required for the player
+	/*private class Player {
+		private int x;
+		private int y;
+		private Room currentRoom;
+	}*/
 }

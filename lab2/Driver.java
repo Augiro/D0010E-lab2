@@ -17,6 +17,10 @@ public class Driver {
 		r2.connectNorthTo(r1);
 		r2.connectSouthTo(r3);
 		r3.connectNorthTo(r2);
+		Level l1 = new Level();
+		l1.place(r1, 50, 0);
+		l1.place(r2, 50, 50);
+		l1.place(r3, 50, 100);
 	}
 
 }
