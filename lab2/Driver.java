@@ -21,6 +21,7 @@ public class Driver {
 		l1.place(r1, 50, 0);
 		l1.place(r2, 50, 50);
 		l1.place(r3, 50, 100);
+		LevelGUI gui = new LevelGUI(l1, "Hai");
 	}
 
 }
