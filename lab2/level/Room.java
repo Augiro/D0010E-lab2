@@ -17,16 +17,12 @@ public class Room {
 		floorColor = color;
 	}
 
-	public void connectNorthTo(Room r) {
-		northRoom = r;
-	}
+	public void connectNorthTo(Room r) { northRoom = r;	}
 	public void connectEastTo(Room r) {
 		eastRoom = r;
 	}
 	public void connectSouthTo(Room r) {
 		southRoom = r;
 	}
-	public void connectWestTo(Room r) {
-		westRoom = r;
-	}
+	public void connectWestTo(Room r) { westRoom = r; }
 }

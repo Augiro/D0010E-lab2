@@ -67,9 +67,18 @@ public class LevelGUI implements Observer {
 					g.setColor(Color.black);
 				}
 				g.drawRect(room.x, room.y, room.length, room.height);
+				arrowDrawer(room,g);
 			}
 		}
-		
+		private void arrowDrawer(Room r, Graphics g) {
+			if(r.northRoom != null) {
+				drawArrow(g,(r.x+r.length/2),r.length,(r.x+r.height/2),r.height);
+			}
+		}
+		private void drawArrow(Graphics g, int x1, int x2, int y1, int y2){
+			g.setColor(Color.CYAN);
+			g.drawLine(x1,x2,y1,y2);
+		}
 
 	 	private class Listener implements KeyListener {
 
