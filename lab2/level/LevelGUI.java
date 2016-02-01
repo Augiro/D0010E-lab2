@@ -57,7 +57,7 @@ public class LevelGUI implements Observer {
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			
+			g.drawString("This is a panel", 10, 20);
 		}
 		
 
