@@ -12,7 +12,7 @@ public class Level extends Observable {
 	private Vector<Room> rooms = new Vector<Room>();
 
 	public boolean place(Room r, int x, int y)  {
-		if(overlaps(x, y) || x < 0 || y < 0) return false;
+		if(overlaps(x, y, x+r.length, y+r.height)) return false;
 		rooms.addElement(r);
 		return true;
 	}
@@ -21,25 +21,20 @@ public class Level extends Observable {
 			startLocation = r;
 	}
 
-	private boolean overlaps(int x1, int y1, int x2, int y2) {
+	private boolean overlaps(int rectBX1, int rectBY1, int rectBX2, int rectBY2) {
 		boolean xoverlap;
 		boolean yoverlap;
 
 		for(Room curRoom : rooms) {
-			if(curRoom.x < x1 && x1 < ())
+			int rectAX1 = curRoom.x;
+			int rectAX2 = curRoom.x+curRoom.length;
+			int rectAY1 = curRoom.y;
+			int rectAY2 = curRoom.y + curRoom.height;
+			if(rectAX1 < rectBX2 && rectAX2 > rectBX1 &&
+					rectAY1 < rectBY2 && rectAY2 > rectBY1) {
+				return true;
+			}
 		}
-		return false;
-
-		/*while(tempRooms.nextRoom != null) {
-			System.out.println(tempRooms.nextRoom == null);
-			xoverlap = yoverlap = false;
-			if(x < tempRooms.room.x && x < (tempRooms.room.x + tempRooms.room.length-1))
-				xoverlap = true;
-			if(xoverlap && (y < tempRooms.room.y && y < (tempRooms.room.y + tempRooms.room.length-1)))
-				yoverlap = true;
-			if(xoverlap && yoverlap) return true;
-			tempRooms = tempRooms.nextRoom;
-		}*/
 		return false;
 	}
 
