@@ -48,7 +48,7 @@ public class LevelGUI implements Observer {
 			
 			addKeyListener(new Listener());
 			
-			setBackground(Color.GREEN);
+			setBackground(Color.WHITE);
 			setPreferredSize(new Dimension(x+20,y+20));
 			setFocusable(true);
 		}
@@ -57,7 +57,17 @@ public class LevelGUI implements Observer {
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.drawString("This is a panel", 10, 20);
+			for(Room room : lv.rooms) {
+				g.setColor(room.floorColor);
+				g.fillRect(room.x, room.y, room.length, room.height);
+				if(room == lv.currentLocation) {
+					g.setColor(Color.MAGENTA);
+				}
+				else {
+					g.setColor(Color.black);
+				}
+				g.drawRect(room.x, room.y, room.length, room.height);
+			}
 		}
 		
 

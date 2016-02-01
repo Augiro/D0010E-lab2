@@ -7,12 +7,14 @@ import java.util.Vector;
 
 public class Level extends Observable {
 	//private Rooms rooms = new Rooms();
-	private Room startLocation;
-	private Room currentLocation;
-	private Vector<Room> rooms = new Vector<Room>();
+	Room startLocation;
+	Room currentLocation;
+	Vector<Room> rooms = new Vector<Room>();
 
 	public boolean place(Room r, int x, int y)  {
 		if(overlaps(x, y, x+r.length, y+r.height)) return false;
+		r.x = x;
+		r.y = y;
 		rooms.addElement(r);
 		return true;
 	}
@@ -22,9 +24,6 @@ public class Level extends Observable {
 	}
 
 	private boolean overlaps(int rectBX1, int rectBY1, int rectBX2, int rectBY2) {
-		boolean xoverlap;
-		boolean yoverlap;
-
 		for(Room curRoom : rooms) {
 			int rectAX1 = curRoom.x;
 			int rectAX2 = curRoom.x+curRoom.length;
