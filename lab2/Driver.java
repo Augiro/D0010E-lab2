@@ -18,10 +18,11 @@ public class Driver {
 		r2.connectSouthTo(r3);
 		r3.connectNorthTo(r2);
 		Level l1 = new Level();
-		l1.place(r1, 50, 0);
-		l1.place(r2, 50, 50);
-		l1.place(r3, 50, 100);
-		LevelGUI gui = new LevelGUI(l1, "Hai");
+		l1.place(r1, 200, 0);
+		l1.place(r2, 50, 100);
+		l1.place(r3, 100, 200);
+		l1.firstLocation(r1);
+		LevelGUI gui = new LevelGUI(l1, "XXX pr0n g4m");
 	}
 
 }

@@ -5,7 +5,7 @@ import java.awt.Color;
 
 
 public class Room { 
-	Room northRoom, westRoom, southRoom, eastRoom;	// Not private because the assignment says so
+	Room northRoom, westRoom, southRoom, eastRoom = null;	// Not private because the assignment says so
 	Color floorColor;
 	int height, length;
 	int x, y;

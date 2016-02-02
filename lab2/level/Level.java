@@ -20,7 +20,10 @@ public class Level extends Observable {
 	}
 	
 	public void firstLocation(Room r) {
-			startLocation = r;
+		startLocation = r;
+		if(currentLocation == null) {
+			currentLocation = startLocation;
+		}
 	}
 
 	private boolean overlaps(int rectBX1, int rectBY1, int rectBX2, int rectBY2) {
