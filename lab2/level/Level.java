@@ -26,6 +26,12 @@ public class Level extends Observable {
 		}
 	}
 
+	private void setCurrentLocation(Room r) {
+		currentLocation = r;
+		setChanged();
+		notifyObservers();
+	}
+
 	private boolean overlaps(int rectBX1, int rectBY1, int rectBX2, int rectBY2) {
 		for(Room curRoom : rooms) {
 			int rectAX1 = curRoom.x;
@@ -38,6 +44,30 @@ public class Level extends Observable {
 			}
 		}
 		return false;
+	}
+
+	void moveNorth() {
+		if(currentLocation.northRoom != null) {
+			setCurrentLocation(currentLocation.northRoom);
+		}
+	}
+
+	void moveWest() {
+		if(currentLocation.westRoom != null) {
+			setCurrentLocation(currentLocation.westRoom);
+		}
+	}
+
+	void moveEast() {
+		if(currentLocation.eastRoom != null) {
+			setCurrentLocation(currentLocation.eastRoom);
+		}
+	}
+
+	void moveSouth() {
+		if(currentLocation.southRoom != null) {
+			setCurrentLocation(currentLocation.southRoom);
+		}
 	}
 
 	/*private class Rooms {
