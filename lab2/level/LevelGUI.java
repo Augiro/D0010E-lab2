@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,7 +28,7 @@ public class LevelGUI implements Observer {
 
 		// TODO: You should change 200 to a value 
 		// depending on the size of the level
-		d = new Display(lv, 200, 200);
+		d = new Display(lv, 600, 300);
 
 		frame.getContentPane().add(d);
 		frame.pack();
@@ -77,7 +78,7 @@ public class LevelGUI implements Observer {
 			int startY;
 			int endX;
 			int endY;
-			if (r.northRoom != null) {
+			if (r.northRoom != null && lv.rooms.contains(r.northRoom)) {
 				startX = r.x + r.length / 2;
 				startY = r.y;
 				endX = r.northRoom.x + r.northRoom.length / 2;
@@ -85,7 +86,7 @@ public class LevelGUI implements Observer {
 				drawArrow(g, startX, endX, startY, endY);
 			}
 
-			if (r.eastRoom != null) {
+			if (r.eastRoom != null && lv.rooms.contains(r.eastRoom)) {
 				startX = r.x + r.length;
 				startY = r.y + r.height / 2;
 				endX = r.eastRoom.x + r.eastRoom.length / 2;
@@ -93,7 +94,7 @@ public class LevelGUI implements Observer {
 				drawArrow(g, startX, endX, startY, endY);
 			}
 
-			if (r.southRoom != null) {
+			if (r.southRoom != null && lv.rooms.contains(r.southRoom)) {
 				startX = r.x + r.length / 2;
 				startY = r.y + r.height;
 				endX = r.southRoom.x + r.southRoom.length / 2;
@@ -101,11 +102,11 @@ public class LevelGUI implements Observer {
 				drawArrow(g, startX, endX, startY, endY);
 			}
 
-			if (r.eastRoom != null) {
+			if (r.westRoom != null && lv.rooms.contains(r.westRoom)) {
 				startX = r.x;
 				startY = r.y + r.height / 2;
-				endX = r.eastRoom.x + r.eastRoom.length / 2;
-				endY = r.eastRoom.y + r.eastRoom.height / 2;
+				endX = r.westRoom.x + r.westRoom.length / 2;
+				endY = r.westRoom.y + r.westRoom.height / 2;
 				drawArrow(g, startX, endX, startY, endY);
 			}
 		}
@@ -119,13 +120,13 @@ public class LevelGUI implements Observer {
 
 		private class Listener implements KeyListener {
 			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getKeyCode() == KeyEvent.VK_UP) {
+				if (arg0.getKeyCode() == KeyEvent.VK_W) {
 					lv.moveNorth();
-				} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
+				} else if (arg0.getKeyCode() == KeyEvent.VK_A) {
 					lv.moveWest();
-				} else if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
+				} else if (arg0.getKeyCode() == KeyEvent.VK_D) {
 					lv.moveEast();
-				} else if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
+				} else if (arg0.getKeyCode() == KeyEvent.VK_S) {
 					lv.moveSouth();
 				}
 			}
